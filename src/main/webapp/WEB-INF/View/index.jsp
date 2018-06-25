@@ -20,9 +20,9 @@
             <div class="col-md-4">
 
                 <div style="color:red">          
-                    <c:if test="${!empty cleMessageErreur}">
+                   <!-- <c:if test="${!empty cleMessageErreur}">
                         ${cleMessageErreur}
-                    </c:if> 
+                    </c:if>--> 
                 </div>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">

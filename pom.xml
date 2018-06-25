@@ -33,10 +33,38 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <!--<scope>provided</scope> -->
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.3</version>
+        </plugin>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+        <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+            <url>http://localhost:8085/manager</url>
+            <server>localhost</server>
+            <path>/${project.build.finalName}</path>
+        </configuration>
+        </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -44,9 +72,9 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
-                    <compilerArguments>
+                    <!-- <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
+                    </compilerArguments> -->
                 </configuration>
             </plugin>
             <plugin>
@@ -55,9 +83,12 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>target</outputDirectory>
+                    <warName>ROOT</warName>
                 </configuration>
             </plugin>
-            <plugin>
+            
+          <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.6</version>
@@ -75,14 +106,17 @@
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
                                     <version>7.0</version>
-                                    <type>jar</type>
+                                    <type>war</type>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>  -->
+            
+            
         </plugins>
+        
     </build>
 
 </project>
