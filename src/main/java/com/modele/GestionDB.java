@@ -5,10 +5,36 @@
  */
 package com.modele;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 /**
  *
  * @author esic
  */
+@Stateless
 public class GestionDB {
-    
+
+    @PersistenceContext(unitName = "solutec-lyon_BaleinePorteContainer_war_1.0-SNAPSHOTPU")
+    private EntityManager em;
+    @Resource
+    private javax.transaction.UserTransaction utx;
+
+    public void persist(Object object) {
+        try {
+            utx.begin();
+            em.persist(object);
+            utx.commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
 }
